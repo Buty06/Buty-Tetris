@@ -1,0 +1,21 @@
+body {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+}
+
+.canvasContainer {
+  position: relative;
+  width: 400px;
+  height: 600px;
+}
+
+.mainCanvas,
+.gameCanvas {
+  position: absolute;
+}
+
+.gameCanvas {
+  top: 42px;
+  left: 4px;
+}
