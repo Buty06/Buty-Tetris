@@ -34,7 +34,7 @@ drawGrid(ctxGame, 266, 556, blockSize);
 const pices = [
   {
     x: 1, // Posición en columnas
-    y: 0, // Posición en filas
+    y: -1, // Posición en filas
     shape: [
       [1, 1, 1],
       [1, 1, 1],
@@ -44,7 +44,7 @@ const pices = [
   },
   {
     x: 8, // Posición en columnas
-    y: 0, // Posición en filas
+    y: -1, // Posición en filas
     shape: [
       [1, 0, 0],
       [1, 0, 0],
@@ -54,7 +54,7 @@ const pices = [
   },
   {
     x: 3, // Posición en columnas
-    y: 0, // Posición en filas
+    y: -1, // Posición en filas
     shape: [
       [1, 1, 0],
       [1, 1, 0],
@@ -63,7 +63,7 @@ const pices = [
   },
   {
     x: 5, // Posición en columnas
-    y: 0, // Posición en filas
+    y: -1, // Posición en filas
     shape: [
       [0, 1, 1],
       [1, 1, 0],
@@ -72,7 +72,7 @@ const pices = [
   },
   {
     x: 6, // Posición en columnas
-    y: 0, // Posición en filas
+    y: -1, // Posición en filas
     shape: [
       [1, 1, 0],
       [0, 1, 1],
@@ -81,7 +81,7 @@ const pices = [
   },
   {
     x: 4, // Posición en columnas
-    y: 0, // Posición en filas
+    y: -1, // Posición en filas
     shape: [
       [1, 0, 0],
       [1, 0, 0],
@@ -91,7 +91,7 @@ const pices = [
   },
   {
     x: 4, // Posición en columnas
-    y: 0, // Posición en filas
+    y: -1, // Posición en filas
     shape: [
       [0, 0, 1],
       [0, 0, 1],
@@ -101,7 +101,7 @@ const pices = [
   },
   {
     x: 6, // Posición en columnas
-    y: 0, // Posición en filas
+    y: -1, // Posición en filas
     shape: [
       [1, 1, 1],
       [0, 1, 0],
@@ -129,5 +129,31 @@ function drawPiece(ctxGame, piece) {
     });
   });
 }
-drawPiece(ctxGame, pices[ramdonPice]);
-console.log(ramdonPice);
+
+//?Para ponerle gravedad a las fichas y controlarlas
+const applyGravity = () => {
+  let lastTime = 0; //*Ultima actualizacion
+  const speed = 500; //*Velocidad de caida
+
+  const animate = (timestamp) => {
+    if (timestamp - lastTime > speed) {
+      //* solo se ejecutara si el anterior tiempo de ejecucion es mayor a la velocidad que le di
+
+      //*Borramos el canva
+      ctxGame.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+      //*Escribimos la cuadricula
+      drawGrid(ctxGame, 266, 556, blockSize);
+      //*Reescribimos la altura de las piezas
+      pices[ramdonPice].y += 1;
+      //*Escribimos las piezas
+      drawPiece(ctxGame, pices[ramdonPice]);
+      //*Actualizamos el tiempo
+      lastTime = timestamp;
+    }
+    requestAnimationFrame(animate);
+  };
+
+  requestAnimationFrame(animate);
+};
+
+// applyGravity();
