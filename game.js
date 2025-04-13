@@ -1,6 +1,7 @@
 //?Obtenemos el contexto del otro canvas
 const gameCanvas = document.getElementById("gameCanvas");
 const ctxGame = gameCanvas.getContext("2d");
+const ramdonPice = Math.round(Math.random() * 7);
 
 //?Para dibujar una cuadricula en el canva
 //*Tamanio de los bloques
@@ -29,18 +30,85 @@ function drawGrid(ctxGame, canvasWidth, canvasHeight, blockSize) {
 }
 drawGrid(ctxGame, 266, 556, blockSize);
 
-//?Para dibujar una ficha
-//*Definimos una ficha
-const piece = {
-  x: 4, // Posición en columnas
-  y: 0, // Posición en filas
-  shape: [
-    [1, 0, 0],
-    [1, 0, 0],
-    [1, 1, 0],
-  ], // Matriz que representa la forma
-  color: "orange", // Color de la ficha
-};
+//?Array que contiene todas las piezas
+const pices = [
+  {
+    x: 1, // Posición en columnas
+    y: 0, // Posición en filas
+    shape: [
+      [1, 1, 1],
+      [1, 1, 1],
+      [1, 1, 1],
+    ], // Matriz que representa la forma
+    color: "blue", // Color de la ficha
+  },
+  {
+    x: 8, // Posición en columnas
+    y: 0, // Posición en filas
+    shape: [
+      [1, 0, 0],
+      [1, 0, 0],
+      [1, 0, 0],
+    ], // Matriz que representa la forma
+    color: "blue", // Color de la ficha
+  },
+  {
+    x: 3, // Posición en columnas
+    y: 0, // Posición en filas
+    shape: [
+      [1, 1, 0],
+      [1, 1, 0],
+    ], // Matriz que representa la forma
+    color: "blue", // Color de la ficha
+  },
+  {
+    x: 5, // Posición en columnas
+    y: 0, // Posición en filas
+    shape: [
+      [0, 1, 1],
+      [1, 1, 0],
+    ], // Matriz que representa la forma
+    color: "blue", // Color de la ficha
+  },
+  {
+    x: 6, // Posición en columnas
+    y: 0, // Posición en filas
+    shape: [
+      [1, 1, 0],
+      [0, 1, 1],
+    ], // Matriz que representa la forma
+    color: "blue", // Color de la ficha
+  },
+  {
+    x: 4, // Posición en columnas
+    y: 0, // Posición en filas
+    shape: [
+      [1, 0, 0],
+      [1, 0, 0],
+      [1, 1, 0],
+    ], // Matriz que representa la forma
+    color: "blue", // Color de la ficha
+  },
+  {
+    x: 4, // Posición en columnas
+    y: 0, // Posición en filas
+    shape: [
+      [0, 0, 1],
+      [0, 0, 1],
+      [0, 1, 1],
+    ], // Matriz que representa la forma
+    color: "blue", // Color de la ficha
+  },
+  {
+    x: 6, // Posición en columnas
+    y: 0, // Posición en filas
+    shape: [
+      [1, 1, 1],
+      [0, 1, 0],
+    ], // Matriz que representa la forma
+    color: "blue", // Color de la ficha
+  },
+];
 
 //*Creamos una funcion para definir la ficha
 function drawPiece(ctxGame, piece) {
@@ -61,4 +129,5 @@ function drawPiece(ctxGame, piece) {
     });
   });
 }
-drawPiece(ctxGame, piece);
+drawPiece(ctxGame, pices[ramdonPice]);
+console.log(ramdonPice);
